@@ -1,3 +1,5 @@
+///////////////////////// ESTA ES LA CLASE PUNTO (Punto.JS) //////////////////////////
+
 class Punto {
     private double x;
     private double y;
@@ -24,6 +26,7 @@ class Punto {
     
 }
 
+///////////////////////// ESTA ES LA CLASE PRINCIPAL (Main.JS) //////////////////////////
 
 public class Main
 {
