@@ -1,4 +1,6 @@
 import math
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Clase Punto
 class Punto:
@@ -35,11 +37,15 @@ class Linea:
     def __str__(self):
         return f"Linea{{punto1 = {self.p1.imprimir_punto()} punto2 = {self.p2.imprimir_punto()}}}"
 
-    def dibujar_linea(self):
+    def dibujar_linea(self, ax):
+        x_values = [self.p1.get_x(), self.p2.get_x()]
+        y_values = [self.p1.get_y(), self.p2.get_y()]
+        ax.plot(x_values, y_values, 'b-', label="Línea")  # Línea azul
+        ax.scatter(x_values, y_values, color='red', zorder=3)  # Puntos en rojo
+
         ekis = self.p2.get_x() - self.p1.get_x()
         ies = self.p2.get_y() - self.p1.get_y()
-
-        pendiente = ies / ekis
+        pendiente = ies / ekis if ekis != 0 else None
         distancia = math.sqrt((ekis * ekis) + (ies * ies))
 
         print(f"La línea tiene una pendiente {pendiente} y la distancia de punto a punto es {distancia}")
@@ -53,11 +59,16 @@ class Circulo:
     def __str__(self):
         return f"Circulo{{centro = {self.centro} radio = {self.radio}}}"
 
-    def dibujar_circulo(self):
+    def dibujar_circulo(self, ax):
         area = math.pi * math.pow(self.radio, 2)
         print(f"El área del círculo es {area} con centro en {self.centro}")
 
-# Clase Principal
+        # Dibujar círculo en la gráfica
+        circle = plt.Circle((self.centro.get_x(), self.centro.get_y()), self.radio, color='green', fill=False)
+        ax.add_patch(circle)
+        ax.scatter(self.centro.get_x(), self.centro.get_y(), color='red', zorder=3)  # Centro en rojo
+
+# Función principal
 def main():
     pp1 = Punto(3, 4)
     pp2 = Punto(6, 5)
@@ -70,13 +81,25 @@ def main():
 
     l1 = Linea(pp1, pp2)
     print(l1)
-    l1.dibujar_linea()
 
     print("--------------------------------------------")
 
     c1 = Circulo(pp1, 3)
     print(c1)
-    c1.dibujar_circulo()
 
-# función principal
+    # Configurar la gráfica
+    fig, ax = plt.subplots()
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 10)
+    ax.set_aspect('equal', adjustable='datalim')
+    ax.grid(True)
+
+    # Dibujar elementos
+    l1.dibujar_linea(ax)
+    c1.dibujar_circulo(ax)
+
+    plt.legend()
+    plt.show()
+
+# Ejecutar la función principal
 main()
