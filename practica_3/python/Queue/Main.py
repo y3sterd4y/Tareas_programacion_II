@@ -35,10 +35,10 @@ def main():
     imp = Impresora()
 
     imp.agregar_impresion(TrabajoDeImpresora("hola mundito", 7))
-    imp.agregar_impresion(TrabajoDeImpresora("joder que rico", 7))
+    imp.agregar_impresion(TrabajoDeImpresora("cosas que deberia estar haciendo", 7))
     imp.agregar_impresion(TrabajoDeImpresora("adios mundo cruel", 7))
-    imp.agregar_impresion(TrabajoDeImpresora("que estoy haciendo", 7))
-    imp.agregar_impresion(TrabajoDeImpresora("todo esto puede ser???", 7))
+    imp.agregar_impresion(TrabajoDeImpresora("se supone que no ahy salida", 7))
+    imp.agregar_impresion(TrabajoDeImpresora("como??? jajaj Comes!" , 7))
 
     imp.ver_cola_impresion()
     imp.imprimir_trabajo()
