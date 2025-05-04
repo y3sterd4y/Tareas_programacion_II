@@ -19,14 +19,12 @@ public class Main extends JFrame {
         setLayout(new BorderLayout(10, 10));
         setLocationRelativeTo(null);
 
-        // Panel del título con imagen
         JPanel panelTitulo = new JPanel(new BorderLayout());
         JLabel lblTitulo = new JLabel("Teatro Municipal", JLabel.CENTER);
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 24));
         lblTitulo.setForeground(new Color(33, 64, 154));
         panelTitulo.add(lblTitulo, BorderLayout.CENTER);
 
-        // Intento cargar una imagen de un teatro
         try {
             URL imageUrl = new URL("https://via.placeholder.com/100x70.png?text=Teatro");
             ImageIcon icon = new ImageIcon(ImageIO.read(imageUrl));
@@ -40,7 +38,6 @@ public class Main extends JFrame {
         panelTitulo.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         add(panelTitulo, BorderLayout.NORTH);
 
-        // Panel principal con datos del boleto
         panelBoleto = new JPanel();
         panelBoleto.setLayout(new GridBagLayout());
         panelBoleto.setBorder(BorderFactory.createTitledBorder("Datos del Boleto"));
@@ -49,7 +46,6 @@ public class Main extends JFrame {
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.anchor = GridBagConstraints.WEST;
 
-        // Tipo de boleto (radio buttons)
         ButtonGroup grupoTipo = new ButtonGroup();
         rbPalco = new JRadioButton("Palco", true);
         rbPlatea = new JRadioButton("Platea");
@@ -69,7 +65,6 @@ public class Main extends JFrame {
         gbc.gridx = 2;
         panelBoleto.add(rbGaleria, gbc);
 
-        // Número de boleto
         JLabel lblNumero = new JLabel("Número:");
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -81,7 +76,6 @@ public class Main extends JFrame {
         gbc.gridwidth = 2;
         panelBoleto.add(txtNumero, gbc);
 
-        // Días de anticipación
         lblDiasAnticipacion = new JLabel("Cant. Días para el Evento:");
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -93,7 +87,6 @@ public class Main extends JFrame {
         gbc.gridwidth = 2;
         panelBoleto.add(txtDiasAnticipacion, gbc);
 
-        // Botones
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER));
         btnVender = new JButton("Vender");
         btnSalir = new JButton("Salir");
@@ -107,7 +100,6 @@ public class Main extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
         panelBoleto.add(panelBotones, gbc);
 
-        // Panel de información
         panelInformacion = new JPanel(new BorderLayout());
         panelInformacion.setBorder(BorderFactory.createTitledBorder("Información"));
 
@@ -116,7 +108,6 @@ public class Main extends JFrame {
         lblInfo.setForeground(new Color(33, 64, 154));
         panelInformacion.add(lblInfo, BorderLayout.CENTER);
 
-        // Añadir paneles al frame
         JPanel panelCentral = new JPanel(new BorderLayout(10, 10));
         panelCentral.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panelCentral.add(panelBoleto, BorderLayout.CENTER);
@@ -124,10 +115,8 @@ public class Main extends JFrame {
 
         add(panelCentral, BorderLayout.CENTER);
 
-        // Configurar visibilidad inicial de campos
         actualizarCamposVisibles();
 
-        // Configurar eventos de radio buttons
         ActionListener radioListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -139,7 +128,6 @@ public class Main extends JFrame {
         rbPlatea.addActionListener(radioListener);
         rbGaleria.addActionListener(radioListener);
 
-        // Configurar evento del botón Vender
         btnVender.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -147,7 +135,6 @@ public class Main extends JFrame {
             }
         });
 
-        // Configurar evento del botón Salir
         btnSalir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -195,7 +182,6 @@ public class Main extends JFrame {
                 }
             }
 
-            // Mostrar información del boleto
             if (boleto != null) {
                 String info = "Número: " + boleto.getNumero() + ", Precio: " + boleto.getPrecio();
                 lblInfo.setText(info);
@@ -209,7 +195,6 @@ public class Main extends JFrame {
     }
 
     public static void main(String[] args) {
-        // Asegurar que la interfaz se crea en el hilo de eventos de Swing
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -220,7 +205,6 @@ public class Main extends JFrame {
     }
 }
 
-// Clases del modelo (mismo código que antes)
 abstract class Boleto {
     protected int numero;
     protected double precio;
